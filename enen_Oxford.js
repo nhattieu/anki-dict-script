@@ -51,7 +51,7 @@ class enen_Oxford {
                 if (def.tag == 'id' || def.tag == 'pv')
                     definition += def.enText ? `<div class="idmphrase">${def.enText}</div>` : '';
                 if (def.tag == 'd' || def.tag == 'ud')
-                    definition += pos + `<span class='tran'><span class='eng_tran'>${def.enText}</span><span class='chn_tran'>${def.chText}</span></span>`;
+                    definition += pos + `<span class='tran'><span class='eng_tran'>${def.enText}</span></span>`;
                 if (def.tag == 'x' && sentnum < maxexample) {
                     sentnum += 1;
                     let enText = def.enText.replace(RegExp(exp, 'gi'), `<b>${exp}</b>`);
@@ -166,7 +166,7 @@ class enen_Oxford {
                                 pos = `<span class='pos'>${group.p_text}</span>`;
                             }
                             if (group.tag == 'd') {
-                                definition += pos + `<span class='tran'><span class='eng_tran'>${group.enText}</span><span class='chn_tran'>${group.chText}</span></span>`;
+                                definition += pos + `<span class='tran'><span class='eng_tran'>${group.enText}</span></span>`;
                                 definitions.push(definition);
                             }
 
