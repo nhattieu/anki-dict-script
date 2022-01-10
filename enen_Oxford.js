@@ -177,7 +177,7 @@ class enen_Oxford {
 
                             if (group.tag == 'sd-g' || group.tag == 'ids-g' || group.tag == 'pvs-g') {
                                 for (const item of group.data) {
-                                    if (item.tag == 'sd') definition = `<div class="dis"><span class="eng_dis">${item.enText}</span><span class="chn_dis">${item.chText}</span></div>` + definition;
+                                    if (item.tag == 'sd') definition = `<div class="dis"><span class="eng_dis">${item.enText}</span></div>` + definition;
                                     let defs = [];
                                     if (item.tag == 'n-g' || item.tag == 'id-g' || item.tag == 'pv-g') defs = item.data;
                                     if (item.tag == 'vrs' || item.tag == 'xrs') defs = item.data[0].data;
