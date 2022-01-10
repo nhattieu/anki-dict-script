@@ -123,7 +123,7 @@ class enen_Oxford {
                     if (def.means && def.means.length > 0) {
                         let pos = def.part || def.part_name || '';
                         pos = pos ? `<span class="pos simple">${pos}</span>` : '';
-                        definition += `<li class="ec">${pos}<span class="ec_chn">${def.means.join()}</span></li>`;
+
                     }
                 definition += '</ul>';
                 let css = `<style>
