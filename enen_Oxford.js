@@ -50,8 +50,6 @@ class enen_Oxford {
                 if (def.text) definition += `<span class='tran'><span class='eng_tran'>${def.text}</span></span>`;
                 if (def.tag == 'id' || def.tag == 'pv')
                     definition += def.enText ? `<div class="idmphrase">${def.enText}</div>` : '';
-                //if (def.tag == 'xrs')
-                //    definition += `<span class='tran'><span class='eng_tran'>${def.data[0].data[0].text}</span></span>`;
                 if (def.tag == 'd' || def.tag == 'ud')
                     definition += pos + `<span class='tran'><span class='eng_tran'>${def.enText}</span></span>`;
                 if (def.tag == 'x' && sentnum < maxexample) {
@@ -83,8 +81,8 @@ class enen_Oxford {
         try {
             data = JSON.parse(await api.fetch(dicturl));
             let oxford = getOxford(data);
-            let bdsimple = oxford.length ? [] : getBDSimple(data); //Combine Youdao Concise English-Chinese Dictionary to the end.
-            let bstrans = oxford.length || bdsimple.length ? [] : getBDTrans(data); //Combine Youdao Translation (if any) to the end.
+            let bdsimple = oxford.length ? [] : getBDSimple(data);
+            let bstrans = oxford.length || bdsimple.length ? [] : getBDTrans(data); 
             return [].concat(oxford, bdsimple, bstrans);
 
         } catch (err) {
@@ -116,8 +114,8 @@ class enen_Oxford {
                 let reading = reading_uk && reading_us ? `uk[${reading_uk}] us[${reading_us}]` : '';
 
                 let audios = [];
-                audios[0] = `http://fanyi.baidu.com/gettts?lan=uk&text=${encodeURIComponent(expression)}&spd=3&source=web`;
-                audios[1] = `http://fanyi.baidu.com/gettts?lan=en&text=${encodeURIComponent(expression)}&spd=3&source=web`;
+                audios[0] = `https://fanyi.baidu.com/gettts?lan=uk&text=${encodeURIComponent(expression)}&spd=3&source=web`;
+                audios[1] = `https://fanyi.baidu.com/gettts?lan=en&text=${encodeURIComponent(expression)}&spd=3&source=web`;
 
                 if (!symbols.parts || symbols.parts.length < 1) return [];
                 let definition = '<ul class="ec">';
@@ -177,12 +175,6 @@ class enen_Oxford {
                                 definitions.push(definition);
                             }
 
-
-                            //if (group.tag == 'xrs') {
-                            //    definition += buildDefinitionBlock(pos, group.data[0].data);
-                            //    definitions.push(definition);
-                            //}
-
                             if (group.tag == 'sd-g' || group.tag == 'ids-g' || group.tag == 'pvs-g') {
                                 for (const item of group.data) {
                                     if (item.tag == 'sd') definition = `<div class="dis"><span class="eng_dis">${item.enText}</span></div>` + definition;
@@ -216,7 +208,6 @@ class enen_Oxford {
                 span.complement {margin: 0 2px;font-weight: bold;}
                 div.idmphrase {font-weight: bold;margin: 0;padding: 0;}
                 span.eng_dis  {margin-right: 5px;}
-                span.chn_dis  {margin: 0;padding: 0;}
                 span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
